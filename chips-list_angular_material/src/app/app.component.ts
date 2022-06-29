@@ -9,21 +9,40 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class AppComponent {
   title = 'chips-list_angular_material';
-  // Teclas separadoras.
+  // Teclas separadoras. 
   readonly separatorKeys = [ENTER, COMMA] as const;
-  selectedSocialPlatform:string[] = [];
+  socialPlatforms:string[] = [];
+  selected:string[] = [];
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    if (value) this.selectedSocialPlatform.push(value);
+    if (value) this.socialPlatforms.push(value);
     // Limpiamos el input
     event.chipInput!.clear();
   }
-
+  
   remove(value: string): void {
-    const index = this.selectedSocialPlatform.indexOf(value);
-    if (index >= 0) this.selectedSocialPlatform.splice(index, 1);
+    let index = this.socialPlatforms.indexOf(value);
+    if (index >= 0) this.socialPlatforms.splice(index, 1);
+    this.changeSelection(value, true);
   }
+
+  changeSelection(value:string, onlyRemove = false){
+    const index = this.selected.indexOf(value);
+    if (index >= 0) this.selected.splice(index, 1);
+    else if(!onlyRemove) this.selected.push(value);
+  }
+
+  isSelected = (item:string) => this.selected.includes(item);
+  getSrc = (item:string) => logos[item.toLowerCase()];
 }
+
+const logos:{[key:string]:string} = {
+  facebook: "../assets/logos/facebook.svg",
+  instagram: "../assets/logos/instagram.png",
+  tiktok: "../assets/logos/tiktok.png",
+  youtube: "../assets/logos/youTube.webp"
+}
+
 
 

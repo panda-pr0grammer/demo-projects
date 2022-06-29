@@ -1,22 +1,27 @@
 <form class="form">
   <mat-form-field class="w-100" appearance="fill">
     <mat-label>Platafromas sociales más usadas</mat-label>
-    <mat-chip-list #chipList aria-label="element selection">
-      <mat-chip *ngFor="let item of selectedSocialPlatform" 
-        selected color="accent" (removed)="remove(item)">
-        {{item | titlecase}}
-        <button matChipRemove>
-          <mat-icon class="clear-button">clear</mat-icon>
+    <mat-chip-list #chipList multiple="true">
+      <mat-chip *ngFor="let item of socialPlatforms" 
+                color="accent" 
+                [selected]="isSelected(item)" 
+                (click)="changeSelection(item)" 
+                (removed)="remove(item)">
+        <img *ngIf="getSrc(item)" matChipAvatar [src]="getSrc(item)">
+        {{item}}
+        <button matChipRemove> 
+          <mat-icon>clear</mat-icon>
         </button>
       </mat-chip>
-      <input placeholder="Nueva platafroma..."
-            [matChipInputFor]="chipList"
+      <input placeholder="Nueva platafroma..." 
+            [matChipInputFor]="chipList" 
             [matChipInputSeparatorKeyCodes]="separatorKeys"
-            [matChipInputAddOnBlur]="true"
+            [matChipInputAddOnBlur]="true" 
             (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>
   </mat-form-field>
 </form>
+
 
 
 
