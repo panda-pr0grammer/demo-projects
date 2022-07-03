@@ -1,0 +1,45 @@
+html, body{
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#222222;
+}
+
+#container{
+    position: relative;
+    margin-top: 5%;
+    width: 0;
+}
+
+.fibo{
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    transform-origin: top left;
+    transition: all 1s linear;
+    border-radius: 0 50% 0 50%;
+    aspect-ratio: 1;
+}
+
+.rotate {
+    border-radius: 0 10% 0 100%;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+
